@@ -62,7 +62,7 @@ os.environ["IPYTHONDIR"] = str(PROJ_PATH / ".ipython")
 
 
 NO_DEPENDENCY_MESSAGE = """{0} is not installed. Please make sure {0} is in
-src/requirements.txt and run `kedro install`."""
+pyproject.toml and run `poetry install`."""
 
 TAG_ARG_HELP = """Construct the pipeline using only nodes which have this tag
 attached. Option can be used multiple times, what results in a
@@ -281,20 +281,26 @@ def lint(files):
         files = ("src/tests", "src/kedro_sandbox")
 
     try:
-        import flake8
         import isort
+        import autoflake
+        import mypy
+        import vulture
     except ImportError as exc:
         raise KedroCliError(NO_DEPENDENCY_MESSAGE.format(exc.name))
 
-    python_call("flake8", ("--max-line-length=88",) + files)
-    python_call("isort", ("-rc", "-tc", "-up", "-fgw=0", "-m=3", "-w=88") + files)
+    python_call("isort", ("-q", "-y", "-rc", "-sl") + files)
+    python_call("autoflake", ("--remove-all-unused-imports", "--recursive", "--remove-unused-variables", "--in-place", "--exclude=__init__.py") + files)
 
     if sys.version_info[:2] >= (3, 6):
         try:
             import black
         except ImportError:
             raise KedroCliError(NO_DEPENDENCY_MESSAGE.format("black"))
-        python_call("black", files)
+        python_call("black", ("-l 120",) + files)
+
+    python_call("isort", ("-q", "-y", "-ca", "-rc", "-tc", "-up", "-fgw=0", "-m=3", "-w=120") + files)
+    python_call("mypy", ("src/kedro_sandbox",))
+    python_call("vulture", ("--min-confidence=70",) + files)
 
 
 @cli.command()
