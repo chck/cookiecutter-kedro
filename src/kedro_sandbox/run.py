@@ -48,7 +48,7 @@ class ProjectContext(KedroContext):
         return create_pipelines()
 
 
-def run_package():
+def run_package() -> None:
     # entry point for running pip-install projects
     # using `<project_package>` command
     project_context = load_context(Path.cwd())

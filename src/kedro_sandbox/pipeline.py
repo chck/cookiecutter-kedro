@@ -27,12 +27,9 @@
 # limitations under the License.
 """Pipeline construction."""
 
-from typing import Dict
+from typing import Any, Dict
 
 from kedro.pipeline import Pipeline
-from kedro_sandbox.pipelines import data_engineering as de
-from kedro_sandbox.pipelines import data_science as ds
-
 
 # Here you can define your data-driven pipeline by importing your functions
 # and adding them to the pipeline as follows:
@@ -50,7 +47,7 @@ from kedro_sandbox.pipelines import data_science as ds
 # $ kedro run
 
 
-def create_pipelines(**kwargs) -> Dict[str, Pipeline]:
+def create_pipelines(**kwargs: Any) -> Dict[str, Pipeline]:
     """Create the project's pipeline.
 
     Args:
@@ -61,7 +58,4 @@ def create_pipelines(**kwargs) -> Dict[str, Pipeline]:
 
     """
 
-    return {
-        "__default__": Pipeline([])
-    }
-
+    return {"__default__": Pipeline([])}

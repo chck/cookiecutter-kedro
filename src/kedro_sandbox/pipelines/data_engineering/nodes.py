@@ -1,12 +1,12 @@
 import logging
 import time
 from functools import wraps
-from typing import Callable
+from typing import Any, Callable
 
 import pandas as pd
 
 
-def log_running_time(func: Callable) -> Callable:
+def log_running_time(func: Callable[..., Any]) -> Callable[..., Any]:
     """Decorator for logging node execution time.
 
         Args:
@@ -16,7 +16,7 @@ def log_running_time(func: Callable) -> Callable:
     """
 
     @wraps(func)
-    def with_time(*args, **kwargs):
+    def with_time(*args: Any, **kwargs: Any) -> Callable[..., Any]:
         log = logging.getLogger(__name__)
         t_start = time.time()
         result = func(*args, **kwargs)
@@ -28,17 +28,17 @@ def log_running_time(func: Callable) -> Callable:
     return with_time
 
 
-def _is_true(x):
+def _is_true(x: str) -> bool:
     return x == "t"
 
 
-def _parse_percentage(x):
+def _parse_percentage(x: Any) -> float:
     if isinstance(x, str):
         return float(x.replace("%", "")) / 100
     return float("NaN")
 
 
-def _parse_money(x):
+def _parse_money(x: str) -> float:
     return float(x.replace("$", "").replace(",", ""))
 
 

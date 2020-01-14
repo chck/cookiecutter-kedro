@@ -43,7 +43,7 @@ from kedro_sandbox.run import ProjectContext
 
 
 @pytest.fixture
-def project_context():
+def project_context() -> ProjectContext:
     return ProjectContext(str(Path.cwd()))
 
 
