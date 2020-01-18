@@ -39,7 +39,7 @@ from pathlib import Path
 
 import pytest
 
-from kedro_sandbox.run import ProjectContext
+from {{cookiecutter.project_slug}}.run import ProjectContext
 
 
 @pytest.fixture
@@ -49,7 +49,7 @@ def project_context() -> ProjectContext:
 
 class TestProjectContext:
     def test_project_name(self, project_context):
-        assert project_context.project_name == "kedro-sandbox"
+        assert project_context.project_name == "{{cookiecutter.project_name}}"
 
     def test_project_version(self, project_context):
         assert project_context.project_version == "0.15.5"

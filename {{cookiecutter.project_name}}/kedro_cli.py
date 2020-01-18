@@ -278,7 +278,7 @@ def lint(files):
     """Run flake8, isort and (on Python >=3.6) black."""
     # pylint: disable=unused-import
     if not files:
-        files = ("src/tests", "src/kedro_sandbox")
+        files = ("src/tests", "src/{{cookiecutter.project_slug}}")
 
     try:
         import isort
@@ -299,7 +299,7 @@ def lint(files):
         python_call("black", ("-l 120",) + files)
 
     python_call("isort", ("-q", "-y", "-ca", "-rc", "-tc", "-up", "-fgw=0", "-m=3", "-w=120") + files)
-    python_call("mypy", ("src/kedro_sandbox",))
+    python_call("mypy", ("src/{{cookiecutter.project_slug}}",))
     python_call("vulture", ("--min-confidence=70",) + files)
 
 
@@ -366,7 +366,7 @@ def _build_jupyter_command(
     cmd = [base, "--ip", ip]
 
     if not all_kernels:
-        project_name = "kedro-sandbox"
+        project_name = "{{cookiecutter.project_name}}"
         kernel_name = re.sub(r"[^\w]+", "", project_name).strip() or "Kedro"
 
         cmd += [
@@ -473,7 +473,7 @@ def convert_notebook(all_flag, overwrite_flag, filepath):
         sys.exit(1)
 
     kedro_project_path = context.project_path
-    kedro_package_name = "kedro_sandbox"
+    kedro_package_name = "{{cookiecutter.project_slug}}"
 
     if all_flag:
         # pathlib glob does not ignore hidden directories,

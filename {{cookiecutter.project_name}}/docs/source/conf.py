@@ -29,7 +29,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# kedro_sandbox documentation build
+# {{cookiecutter.project_slug}} documentation build
 # configuration file, created by sphinx-quickstart.
 #
 # This file is execfile()d with the current directory set to its
@@ -50,11 +50,11 @@ import re
 from kedro.cli.utils import find_stylesheets
 from recommonmark.transform import AutoStructify
 
-from kedro_sandbox import __version__ as release
+from {{cookiecutter.project_slug}} import __version__ as release
 
 # -- Project information -----------------------------------------------------
 
-project = "kedro_sandbox"
+project = "{{cookiecutter.project_slug}}"
 copyright = "2018-2019, QuantumBlack Visual Analytics Limited"
 author = "QuantumBlack"
 
@@ -149,7 +149,7 @@ html_show_sourcelink = False
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "kedro_sandboxdoc"
+htmlhelp_basename = "{{cookiecutter.project_slug}}doc"
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -177,8 +177,8 @@ latex_elements = {
 latex_documents = [
     (
         master_doc,
-        "kedro_sandbox.tex",
-        "kedro_sandbox Documentation",
+        "{{cookiecutter.project_slug}}.tex",
+        "{{cookiecutter.project_slug}} Documentation",
         "QuantumBlack",
         "manual",
     )
@@ -191,8 +191,8 @@ latex_documents = [
 man_pages = [
     (
         master_doc,
-        "kedro_sandbox",
-        "kedro_sandbox Documentation",
+        "{{cookiecutter.project_slug}}",
+        "{{cookiecutter.project_slug}} Documentation",
         [author],
         1,
     )
@@ -206,11 +206,11 @@ man_pages = [
 texinfo_documents = [
     (
         master_doc,
-        "kedro_sandbox",
-        "kedro_sandbox Documentation",
+        "{{cookiecutter.project_slug}}",
+        "{{cookiecutter.project_slug}} Documentation",
         author,
-        "kedro_sandbox",
-        "Project kedro_sandbox codebase.",
+        "{{cookiecutter.project_slug}}",
+        "Project {{cookiecutter.project_slug}} codebase.",
         "Data-Science",
     )
 ]

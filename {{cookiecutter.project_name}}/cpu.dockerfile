@@ -3,7 +3,7 @@ FROM gcr.io/deeplearning-platform-release/tf2-cpu:m40
 
 ARG PYTHON_VERSION=3.7
 ARG DOCKER_WORKDIR=${DOCKER_WORKDIR:-"/app"}
-ENV PYTHONPATH=${PYTHONPATH}:${DOCKER_WORKDIR}/kedro-sandbox/src
+ENV PYTHONPATH=${PYTHONPATH}:${DOCKER_WORKDIR}/{{cookiecutter.project_name}}/src
 
 # Remove miniconda, Hello naked python
 RUN rm -r /root/miniconda3 \
