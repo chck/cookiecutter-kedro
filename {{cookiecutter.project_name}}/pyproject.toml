@@ -2,7 +2,7 @@
 name = "kedro-sanbdox"
 version = "0.1.0"
 description = ""
-authors = ["chck <shimekiri.today@gmail.com>"]
+authors = ["{{cookiecutter.github_username}}"]
 
 [tool.poetry.dependencies]
 python = ">=3.6, <3.8"
