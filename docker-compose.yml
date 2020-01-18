@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  kedro:
+    container_name: kedro-sandbox
+    build:
+      context: .
+      dockerfile: ./cpu.dockerfile
+    ports:
+      - "${PORT:-2222}:8080"
+    env_file:
+      - .env
+    volumes:
+      - .:/app/
