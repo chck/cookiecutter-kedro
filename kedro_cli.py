@@ -303,23 +303,6 @@ def lint(files):
     python_call("vulture", ("--min-confidence=70",) + files)
 
 
-@cli.command()
-def install():
-    """Install project dependencies from both requirements.txt
-    and environment.yml (optional)."""
-
-    if (Path.cwd() / "src" / "environment.yml").is_file():
-        call(["conda", "install", "--file", "src/environment.yml", "--yes"])
-
-    pip_command = ["install", "-U", "-r", "src/requirements.txt"]
-
-    if os.name == "posix":
-        python_call("pip", pip_command)
-    else:
-        command = [sys.executable, "-m", "pip"] + pip_command
-        subprocess.Popen(command, creationflags=subprocess.CREATE_NEW_CONSOLE)
-
-
 @forward_command(cli, forward_help=True)
 def ipython(args):
     """Open IPython with project specific variables loaded."""
@@ -345,46 +328,6 @@ def package():
     default=False,
     help=OPEN_ARG_HELP,
 )
-def build_docs(open_docs):
-    """Build the project documentation."""
-    python_call("pip", ["install", "src/[docs]"])
-    python_call("pip", ["install", "-r", "src/requirements.txt"])
-    python_call(
-        "ipykernel", ["install", "--user", "--name=kedro_sandbox"]
-    )
-    shutil.rmtree("docs/build", ignore_errors=True)
-    call(
-        [
-            "sphinx-apidoc",
-            "--module-first",
-            "-o",
-            "docs/source",
-            "src/kedro_sandbox",
-        ]
-    )
-    call(["sphinx-build", "-M", "html", "docs/source", "docs/build", "-a"])
-    if open_docs:
-        docs_page = (Path.cwd() / "docs" / "build" / "html" / "index.html").as_uri()
-        secho("Opening {}".format(docs_page))
-        webbrowser.open(docs_page)
-
-
-@cli.command("build-reqs")
-def build_reqs():
-    """Build the project dependency requirements."""
-    requirements_path = Path.cwd() / "src" / "requirements.in"
-    if not requirements_path.is_file():
-        secho("No requirements.in found. Copying contents from requirements.txt...")
-        contents = (Path.cwd() / "src" / "requirements.txt").read_text()
-        requirements_path.write_text(contents)
-    python_call("piptools", ["compile", str(requirements_path)])
-    secho(
-        (
-            "Requirements built! Please update requirements.in "
-            "if you'd like to make a change in your project's dependencies, "
-            "and re-run build-reqs to generate the new requirements.txt."
-        )
-    )
 
 
 @cli.command("activate-nbstripout")
