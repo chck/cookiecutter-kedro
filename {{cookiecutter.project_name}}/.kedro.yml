@@ -1,1 +1,1 @@
-context_path: kedro_sandbox.run.ProjectContext
+context_path: {{cookiecutter.project_slug}}.run.ProjectContext
