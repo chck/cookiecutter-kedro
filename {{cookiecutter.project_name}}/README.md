@@ -54,13 +54,13 @@ poetry run kedro lint
 In order to use notebooks in your Kedro project, you need to install Jupyter:
 
 ```
-kedro jupyter lab
+poetry run kedro jupyter lab
 ```
 
 And if you want to run an IPython session:
 
 ```
-kedro ipython
+poetry run kedro ipython
 ```
 
 Running Jupyter or IPython this way provides the following variables in
