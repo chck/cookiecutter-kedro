@@ -318,18 +318,6 @@ def package():
     call([sys.executable, "setup.py", "clean", "--all", "bdist_wheel"], cwd="src")
 
 
-@cli.command("build-docs")
-@click.option(
-    "--open",
-    "-o",
-    "open_docs",
-    is_flag=True,
-    multiple=False,
-    default=False,
-    help=OPEN_ARG_HELP,
-)
-
-
 @cli.command("activate-nbstripout")
 def activate_nbstripout():
     """Install the nbstripout git hook to automatically clean notebooks."""
