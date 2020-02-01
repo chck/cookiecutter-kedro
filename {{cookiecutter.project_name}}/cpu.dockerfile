@@ -25,7 +25,7 @@ RUN rm -r /root/miniconda3 \
 # Setup Python Dependencies
 WORKDIR /tmp
 COPY poetry.lock pyproject.toml ./
-RUN pip3 install poetry==1.0.* wheel==0.33.* \
+RUN pip3 install --no-cache-dir poetry==1.0.* wheel==0.33.* \
  && poetry config virtualenvs.create false \
  && poetry install
 
