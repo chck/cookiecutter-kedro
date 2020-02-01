@@ -40,7 +40,7 @@ RUN jupyter serverextension enable --py jupyterlab \
  && jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build \
  && jupyter labextension install jupyterlab-plotly --no-build \
  && jupyter labextension install plotlywidget --no-build \
- && jupyter lab build \
+ && jupyter lab build ${BUILD_OPTION} \
  && jupyter nbextension enable --py widgetsnbextension \
  && unset NODE_OPTIONS
 

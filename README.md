@@ -1,6 +1,6 @@
 # cookiecutter-kedro
 
-A [Kedro][kedro] template for [Cookiecutter][cookiecutter]. (Supports Python ≥ 3.7.*)
+A [Kedro][kedro] template for [Cookiecutter][cookiecutter]. (Supports Python ≥ 3.7)
 
 ## Prerequisites
 

@@ -1,5 +1,26 @@
 # {{cookiecutter.project_name}}
 
+## Prerequisites
+| Software                 | Install (Mac)              |
+|--------------------------|----------------------------|
+| [Python 3.7.6][python]   | `pyenv install 3.7.6`      |
+| [Poetry 1.0.*][poetry]   | `curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py \| python`|
+| [direnv][direnv]         | `brew install direnv`      |
+| [Docker][docker]         | `brew cask install docker` |
+
+[python]: https://www.python.org/downloads/release/python-376/
+[poetry]: https://python-poetry.org/
+[direnv]: https://direnv.net/
+[docker]: https://docs.docker.com/docker-for-mac/
+
+## Declare configurations
+```bash
+vi .env
+=====================
+PORT=YOUR_JUPYTER_PORT
+BUILD_OPTION="--minimize=False"
+```
+
 ## Overview
 
 Take a look at the [documentation](https://kedro.readthedocs.io) to get started.
@@ -15,12 +36,24 @@ In order to get the best out of the template:
 
 ## Installing dependencies
 
-Dependencies should be declared in `pyproject.toml` for pip installation and `src/environment.yml` for conda installation.
+Dependencies should be declared in `pyproject.toml` for pip installation.
 
 To install them, run:
 
 ```
 poetry install
+```
+
+If you add new dependency:
+
+```
+poetry add pandas
+```
+
+If you want to use it in only a development environment:
+
+```
+poetry add --dev pytest
 ```
 
 ## Running Kedro
@@ -51,10 +84,21 @@ poetry run kedro lint
 
 ### Working with Kedro from notebooks
 
-In order to use notebooks in your Kedro project, you need to install Jupyter:
+You can start a local notebook server:
 
 ```
 poetry run kedro jupyter lab
+```
+
+Or if you need dependencies except to python's one such as C+ binding and more:
+
+```
+# At first, write down the process to install the dependency in cpu.dockerfile
+# And then, are you ready to wait a long time?
+docker-compose up
+
+# Didn't work?
+docker-compose up --build
 ```
 
 And if you want to run an IPython session:
@@ -81,28 +125,3 @@ Alternatively, you may want to transform all your notebooks in one go. To this e
 poetry run kedro jupyter convert --all
 ```
 
-#### Ignoring notebook output cells in `git`
-
-In order to automatically strip out all output cell contents before committing to `git`, you can run `poetry run kedro activate-nbstripout`. This will add a hook in `.git/config` which will run `nbstripout` before anything is committed to `git`.
-
-> *Note:* Your output cells will be left intact locally.
-
-## Package the project
-
-In order to package the project's Python code in `.egg` and / or a `.wheel` file, you can run:
-
-```
-poetry run kedro package
-```
-
-After running that, you can find the two packages in `src/dist/`.
-
-## Building API documentation
-
-To build API docs for your code using Sphinx, run:
-
-```
-poetry run kedro build-docs
-```
-
-See your documentation by opening `docs/build/html/index.html`.
