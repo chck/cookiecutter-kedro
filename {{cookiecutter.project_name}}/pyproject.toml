@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "kedro-sanbdox"
+name = "{{cookiecutter.project_name}}"
 version = "0.1.0"
 description = ""
 authors = ["{{cookiecutter.github_username}}"]
