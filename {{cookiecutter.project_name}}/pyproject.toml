@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "{{cookiecutter.project_name}}"
 version = "0.1.0"
-description = ""
+description = "A ML pipeline for your data-science lifecycles, such as EDA, Feature Engineering, Experiment, and Evaluation."
 authors = ["{{cookiecutter.github_user_name}}"]
 
 [tool.poetry.dependencies]

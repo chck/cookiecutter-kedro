@@ -18,7 +18,8 @@
 vi .env
 =====================
 PORT=YOUR_JUPYTER_PORT
-BUILD_OPTION="--minimize=False"
+BUILD_OPTION=--minimize=False
+PROCESSES=kedro kedro_viz
 ```
 
 ## Overview
