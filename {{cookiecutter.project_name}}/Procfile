@@ -1,0 +1,2 @@
+kedro: kedro jupyter lab --no-browser --allow-root --ip=0.0.0.0 --port=8080 --config=/root/.jupyter/jupyter_notebook_config.py
+kedro_viz: kedro viz --host=0.0.0.0

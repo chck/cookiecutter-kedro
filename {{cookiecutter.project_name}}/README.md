@@ -76,7 +76,7 @@ To configure the coverage threshold, please have a look at the file `.coveragerc
 
 ## Linting Kedro
 
-If you prefer, it's possible to run linter declared in [kedro_cli.py](https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}}/blob/master/kedro_cli.py):
+If you prefer, it's possible to run linter declared in [kedro_cli.py](https://github.com/{{cookiecutter.github_user_name}}/{{cookiecutter.project_name}}/blob/master/kedro_cli.py):
 
 ```
 poetry run kedro lint

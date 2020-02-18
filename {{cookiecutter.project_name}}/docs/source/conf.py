@@ -56,7 +56,7 @@ from {{cookiecutter.project_slug}} import __version__ as release
 
 project = "{{cookiecutter.project_slug}}"
 copyright = "2018-2019, QuantumBlack Visual Analytics Limited"
-author = "{{cookiecutter.github_username}}"
+author = "{{cookiecutter.github_user_namename}}"
 
 # The short X.Y version.
 version = re.match(r"^([0-9]+\.[0-9]+).*", release).group(1)

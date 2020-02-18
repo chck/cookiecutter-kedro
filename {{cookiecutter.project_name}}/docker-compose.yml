@@ -5,9 +5,12 @@ services:
     build:
       context: .
       dockerfile: ./cpu.dockerfile
+    command: ["honcho start $PROCESSES"]
     ports:
       - "${PORT:-2222}:8080"
+      - "6006:6006"
+      - "4141:4141"
     env_file:
       - .env
     volumes:
-      - .:/app/
+      - ${PWD}:/app/
